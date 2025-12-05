@@ -2,3 +2,7 @@
 */.settings
 */ext
 */target
+/.metadata/
+*/.classpath
+*/.project
+*/.classpath

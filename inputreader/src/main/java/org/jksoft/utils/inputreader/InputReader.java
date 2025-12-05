@@ -19,7 +19,6 @@ public class InputReader {
 	public static List<String> readTestInput(int testNumber){
 		return readInput("ext/test%d.txt".formatted(testNumber));
 	}
-
 	
 	private static List<String> readInput(String file){
 		FileInputStream fis;
