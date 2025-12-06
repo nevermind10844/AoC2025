@@ -19,7 +19,25 @@ public class Main {
 		Grid grid = Grid.parse(lines, config);
 		grid.setDiagonalNeighbors(true);
 		
-		System.out.println(grid.toString());
+		int initialNumberOfRolls = grid.findTiles(TileType.AT).size();
+		
+		int removed = Integer.MAX_VALUE;
+		
+		while(removed > 0) {
+			removed = removeRolls(grid);
+			System.out.println(String.format("%d rolls have been removed", removed));
+		}
+		
+		int remainingNumberOfRolls = grid.findTiles(TileType.AT).size();
+		
+		int totalRemoved = initialNumberOfRolls - remainingNumberOfRolls;
+		
+		System.out.println(String.format("A total of %d rolls have been removed", totalRemoved));
+
+	}
+	
+	public static int removeRolls(Grid grid) {
+		List<Tile> before = grid.findTiles(TileType.AT);
 
 		for (int y = 0; y < grid.getHeight(); y++) {
 			for (int x = 0; x < grid.getWidth(); x++) {
@@ -30,7 +48,7 @@ public class Main {
 							.filter(tile -> tile.getType().equals(TileType.AT) || tile.getType().equals(TileType.HASH))
 							.toList();
 					if (paperRollNeighbors.size() < 4) {
-						current.setType(TileType.HASH);
+						current.setType(TileType.DOT);
 					}
 				}
 			}
@@ -38,9 +56,10 @@ public class Main {
 		
 		System.out.println(grid.toString());
 		
-		List<Tile> tiles = grid.findTiles(TileType.HASH);
-		System.out.println(tiles.size());
-
+		List<Tile> after = grid.findTiles(TileType.AT);
+		
+		return before.size() - after.size();
+		
 	}
 
 }
