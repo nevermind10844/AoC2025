@@ -1,0 +1,7 @@
+Rangemanager found an overlap between range 1 and range 3
+Rangemanager merging ranges Range[10 - 14] and Range[12 - 18]
+Replaced ranges with merged Range Range[10 - 18]
+Rangemanager found an overlap between range 1 and range 2
+Rangemanager merging ranges Range[16 - 20] and Range[10 - 18]
+Replaced ranges with merged Range Range[10 - 20]
+14
