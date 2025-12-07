@@ -1,9 +1,6 @@
-Problem[MULTIPLICATION with 3 terms]
-result: 33210
-Problem[ADDITION with 3 terms]
-result: 490
-Problem[MULTIPLICATION with 3 terms]
-result: 4243455
-Problem[ADDITION with 3 terms]
-result: 401
-4277556
+123 328  51 64 
+ 45 64  387 23 
+  6 98  215 314
+*   +   *   +  
+
+3263827

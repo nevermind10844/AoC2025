@@ -11,5 +11,10 @@
   	  <artifactId>inputreader</artifactId>
   	  <version>1.0.1</version>
   	</dependency>
+  	<dependency>
+  	  <groupId>org.jksoft.utils</groupId>
+  	  <artifactId>grid</artifactId>
+  	  <version>1.0.1</version>
+  	</dependency>
   </dependencies>
 </project>
