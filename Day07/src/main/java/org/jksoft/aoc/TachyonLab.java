@@ -32,18 +32,18 @@ public class TachyonLab {
 		
 		Tile below = this.grid.getSouthernNeighbor(current);
 		if(below.getType().equals(TileType.DOT)) {
-			below.setType(TileType.LETTER_B);
+			below.setType(TileType.PIPE);
 			followRay(below);
 		} else if(below.getType().equals(TileType.PLUS)){
 			this.splits++;
 			Tile left = this.grid.getWesternNeighbor(below);
 			if(left.getType().equals(TileType.DOT)) {
-				left.setType(TileType.LETTER_B);
+				left.setType(TileType.PIPE);
 				followRay(left);
 			}
 			Tile right = this.grid.getEasternNeighbor(below);
 			if(right.getType().equals(TileType.DOT)) {
-				right.setType(TileType.LETTER_B);
+				right.setType(TileType.PIPE);
 				followRay(right);
 			}
 		}

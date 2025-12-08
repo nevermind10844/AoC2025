@@ -12,7 +12,6 @@ public class Main {
 		MappingConfiguration mappingConfig = new MappingConfiguration();
 		mappingConfig.addMapping('S', TileType.STAR);
 		mappingConfig.addMapping('^', TileType.PLUS);
-		mappingConfig.addMapping('|', TileType.LETTER_B);
 		Grid grid = Grid.parse(InputReader.readInput(), mappingConfig);
 		
 		TachyonLab lab = new TachyonLab(grid);
