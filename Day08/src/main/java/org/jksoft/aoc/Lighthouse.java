@@ -9,6 +9,9 @@ public class Lighthouse {
 	private List<JunctionBox> boxes;
 	private List<DistanceContainer> distances;
 	private List<Circuit> circuits;
+	
+	private JunctionBox lastJunctionBoxA;
+	private JunctionBox lastJunctionBoxB;
 
 	public Lighthouse() {
 		this.boxes = new ArrayList<>();
@@ -37,41 +40,46 @@ public class Lighthouse {
 		}
 		this.distances.sort(null);
 		this.distances.forEach(System.out::println);
-		
+
 		for (JunctionBox junctionBox : boxes) {
 			Circuit c = new Circuit(junctionBox.getId());
 			c.addBox(junctionBox);
 			this.circuits.add(c);
 		}
-		
+
 	}
-	
-	public void connect(int max) {
-		for(int i=0;i<max; i++) {
-			DistanceContainer dc = this.distances.get(i);
+
+	public void connect() {
+		int i = 0;
+		while (this.circuits.size() > 1) {
+			DistanceContainer dc = this.distances.get(0);
 			JunctionBox a = dc.getA();
 			JunctionBox b = dc.getB();
 			Circuit ca = this.getCircuit(a);
 			Circuit cb = this.getCircuit(b);
-			if(ca.equals(cb))
-				continue;
-			else 
+			if (!ca.equals(cb)) {
+				System.out.println(String.format("mergeing '%s' && '%s'", a, b));
+				this.lastJunctionBoxA = a;
+				this.lastJunctionBoxB = b;
 				this.mergeCircuits(ca, cb);
+			}
+			
+			this.distances.remove(dc);
+			i++;
+			System.out.println(String.format("Iteration: [%d] with circuit count being [%d] and distance count being [%d]", i, this.circuits.size(), this.distances.size()));
 		}
-		
+
 		this.circuits.sort(null);
-		
+
 		this.circuits.forEach(System.out::println);
 	}
-	
-	public int getResult() {
-		int result = 1;
-		for(int i=0; i<3; i++) {
-			result *= this.circuits.get(i).getBoxes().size();
-		}
+
+	public Long getResult() {
+		Long result = Long.valueOf(this.lastJunctionBoxA.getX()) * Long.valueOf(this.lastJunctionBoxB.getX());
+		
 		return result;
 	}
-	
+
 	private void mergeCircuits(Circuit ca, Circuit cb) {
 		Circuit nc = Circuit.mergeCircuit(ca, cb);
 		this.circuits.removeAll(List.of(ca, cb));

@@ -20,8 +20,8 @@ public class Main {
 		}
 		
 		lighthouse.initBoxes();
-		lighthouse.connect(1000);
-		int result = lighthouse.getResult();
+		lighthouse.connect();
+		Long result = lighthouse.getResult();
 		System.out.println(result);
 	}
 
